@@ -20,7 +20,7 @@ const description = `Projects, experience, and contact details for ${profile.nam
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title,
+  title: { default: title, template: `%s | ${profile.name}` },
   description,
   authors: [{ name: profile.name }],
   alternates: { canonical: "/" },
@@ -49,9 +49,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
-      <body className="flex min-h-dvh flex-col font-sans">
+      <body id="top" className="flex min-h-dvh flex-col font-sans">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-foreground"

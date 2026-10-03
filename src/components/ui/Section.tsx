@@ -15,7 +15,7 @@ export function Section({ id, title, description, children }: SectionProps) {
     <section
       id={id}
       aria-labelledby={headingId}
-      className="scroll-mt-16 border-t border-border py-16 sm:py-24"
+      className="scroll-mt-20 border-t border-border py-16 sm:py-24"
     >
       <Container>
         <header className="reveal mb-10 max-w-2xl">

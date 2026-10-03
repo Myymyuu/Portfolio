@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type KeyboardEvent } from "react";
 import type { NavItem } from "@/types/portfolio";
 
@@ -50,13 +51,13 @@ export function MobileNav({ items }: MobileNavProps) {
         <ul className="mx-auto flex max-w-5xl flex-col px-5 py-2 sm:px-8">
           {items.map((item) => (
             <li key={item.href}>
-              <a
+              <Link
                 href={item.href}
                 onClick={() => setIsOpen(false)}
                 className="block rounded-md py-3 font-medium text-muted-foreground transition duration-200 hover:text-foreground focus-visible:outline-2 focus-visible:outline-accent"
               >
                 {item.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

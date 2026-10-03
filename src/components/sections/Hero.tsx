@@ -19,7 +19,7 @@ export function Hero() {
         <p className="mt-3 text-sm text-muted-foreground">{profile.location}</p>
 
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <ButtonLink href="#projects">View projects</ButtonLink>
+          <ButtonLink href="/projects">View projects</ButtonLink>
           <ButtonLink href="#contact" variant="secondary">
             Get in touch
           </ButtonLink>
