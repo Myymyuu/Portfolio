@@ -39,12 +39,13 @@
 
 @theme {
   --animate-fade-up: fade-up 300ms ease-out both;
-  --animate-page-in: page-in 250ms ease-out backwards;
+  --animate-page-in: page-in 360ms ease backwards;
 
-  /* Opacity only: a transform would shift anchor targets while Next scrolls to /about#section. */
+  /* No transforms: they would shift anchor targets while Next scrolls to /about#section. Blur leaves geometry untouched. */
   @keyframes page-in {
     from {
       opacity: 0;
+      filter: blur(4px);
     }
   }
 
