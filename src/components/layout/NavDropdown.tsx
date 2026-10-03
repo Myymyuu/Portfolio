@@ -3,6 +3,7 @@
 import Link from "next/link";
 import {
   useId,
+  useRef,
   useState,
   type FocusEvent,
   type KeyboardEvent,
@@ -18,13 +19,21 @@ interface NavDropdownProps {
 export function NavDropdown({ label, href, links }: NavDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const menuId = useId();
+  const triggerRef = useRef<HTMLAnchorElement>(null);
+
+  function handleFocus(event: FocusEvent<HTMLDivElement>) {
+    if (!event.currentTarget.contains(event.relatedTarget)) setIsOpen(true);
+  }
 
   function handleBlur(event: FocusEvent<HTMLDivElement>) {
     if (!event.currentTarget.contains(event.relatedTarget)) setIsOpen(false);
   }
 
   function handleKeyDown(event: KeyboardEvent<HTMLDivElement>) {
-    if (event.key === "Escape") setIsOpen(false);
+    if (event.key === "Escape" && isOpen) {
+      setIsOpen(false);
+      triggerRef.current?.focus();
+    }
     if (event.key === "ArrowDown" && !isOpen) {
       event.preventDefault();
       setIsOpen(true);
@@ -36,11 +45,12 @@ export function NavDropdown({ label, href, links }: NavDropdownProps) {
       className="relative"
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
-      onFocus={() => setIsOpen(true)}
+      onFocus={handleFocus}
       onBlur={handleBlur}
       onKeyDown={handleKeyDown}
     >
       <Link
+        ref={triggerRef}
         href={href}
         aria-expanded={isOpen}
         aria-controls={menuId}
