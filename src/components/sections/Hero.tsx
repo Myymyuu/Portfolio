@@ -5,7 +5,7 @@ import { Container } from "@/components/ui/Container";
 export function Hero() {
   return (
     <section aria-labelledby="hero-heading" className="py-20 sm:py-32">
-      <Container className="motion-safe:animate-fade-up">
+      <Container>
         <p className="text-sm font-medium text-accent">{profile.role}</p>
         <h1
           id="hero-heading"

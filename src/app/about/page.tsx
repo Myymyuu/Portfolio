@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <Container className="pt-16 pb-4 sm:pt-24 motion-safe:animate-fade-up">
+      <Container className="pt-16 pb-4 sm:pt-24">
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
           About Me
         </h1>

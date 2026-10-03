@@ -23,7 +23,7 @@ export default function ProjectsPage() {
   return (
     <section aria-labelledby="projects-heading" className="py-16 sm:py-24">
       <Container>
-        <header className="mb-10 max-w-2xl motion-safe:animate-fade-up">
+        <header className="mb-10 max-w-2xl">
           <h1
             id="projects-heading"
             className="text-3xl font-bold tracking-tight sm:text-4xl"
