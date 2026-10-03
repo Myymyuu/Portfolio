@@ -4,6 +4,9 @@ import Link from "next/link";
 import { useState, type KeyboardEvent } from "react";
 import type { NavItem } from "@/types/portfolio";
 
+const linkClassName =
+  "block rounded-md py-3 font-medium text-muted-foreground transition duration-200 hover:text-foreground focus-visible:outline-2 focus-visible:outline-accent";
+
 interface MobileNavProps {
   items: NavItem[];
 }
@@ -54,10 +57,25 @@ export function MobileNav({ items }: MobileNavProps) {
               <Link
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className="block rounded-md py-3 font-medium text-muted-foreground transition duration-200 hover:text-foreground focus-visible:outline-2 focus-visible:outline-accent"
+                className={linkClassName}
               >
                 {item.label}
               </Link>
+              {item.children && (
+                <ul className="mb-2 ml-1 border-l border-border pl-4">
+                  {item.children.map((child) => (
+                    <li key={child.href}>
+                      <Link
+                        href={child.href}
+                        onClick={() => setIsOpen(false)}
+                        className={`${linkClassName} text-sm`}
+                      >
+                        {child.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </li>
           ))}
         </ul>

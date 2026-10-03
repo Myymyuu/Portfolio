@@ -17,11 +17,17 @@ export const profile: Profile = {
 };
 
 export const navItems: NavItem[] = [
-  { label: "About", href: "/#about" },
-  { label: "Skills", href: "/#skills" },
+  {
+    label: "About Me",
+    href: "/about",
+    children: [
+      { label: "About", href: "/about#about" },
+      { label: "Skills", href: "/about#skills" },
+      { label: "Experience", href: "/about#experience" },
+      { label: "Education", href: "/about#education" },
+    ],
+  },
   { label: "Projects", href: "/projects" },
-  { label: "Experience", href: "/#experience" },
-  { label: "Education", href: "/#education" },
   { label: "Contact", href: "/#contact" },
 ];
 

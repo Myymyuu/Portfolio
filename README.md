@@ -1,6 +1,6 @@
 # Khanh Le — Developer Portfolio
 
-Personal portfolio site for Khanh Le, built with Next.js (App Router), TypeScript, and Tailwind CSS. It has two static routes: `/` (Hero, About, Skills, Experience, Education, Contact) and `/projects`.
+Personal portfolio site for Khanh Le, built with Next.js (App Router), TypeScript, and Tailwind CSS. It has three static routes: `/` (Hero, Contact), `/about` (About, Skills, Experience, Education), and `/projects`.
 
 ## Run locally
 
@@ -46,10 +46,10 @@ Project screenshots: put images in `public/projects/` and add an `image` (`src`,
 
 ```
 src/
-  app/                 layout (metadata, skip link), home page, projects/ route, robots, sitemap, global styles
+  app/                 layout (metadata, skip link), home page, about/ and projects/ routes, robots, sitemap, global styles
   components/
-    layout/            Navbar, MobileNav (only client component), Footer
-    sections/          One component per home page section
+    layout/            Navbar, NavDropdown and MobileNav (the only client components), Footer
+    sections/          One component per page section
     ui/                Section, Container, ProjectCard, Timeline, Tag, ButtonLink, TextLink
   data/                Typed portfolio content
   types/               Shared TypeScript interfaces
