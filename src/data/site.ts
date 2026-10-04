@@ -1,7 +1,10 @@
 import type { NavItem, Profile, SocialLink } from "@/types/portfolio";
+import { getBasePath } from "@/lib/base-path";
+
+export const basePath = getBasePath();
 
 export const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:4317";
+  process.env.NEXT_PUBLIC_SITE_URL ?? `http://localhost:4317${basePath}`;
 
 export const profile: Profile = {
   name: "Khanh Le",

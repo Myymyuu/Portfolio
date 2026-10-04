@@ -17,8 +17,7 @@ Other scripts:
 | ------------------- | ---------------------------------- |
 | `npm run lint`      | ESLint (Next.js core-web-vitals)   |
 | `npm run typecheck` | Generate route types, run `tsc`    |
-| `npm run build`     | Production build                   |
-| `npm run start`     | Serve the production build on 4317 |
+| `npm run build`     | Static export to `out/`            |
 
 ## Editing content
 
@@ -40,7 +39,29 @@ Project screenshots: put images in `public/projects/` and add an `image` (`src`,
 
 | Variable               | Purpose                                                        |
 | ---------------------- | -------------------------------------------------------------- |
-| `NEXT_PUBLIC_SITE_URL` | Production URL used for canonical/Open Graph URLs, robots, and sitemap. Defaults to `http://localhost:4317`. |
+| `NEXT_PUBLIC_SITE_URL` | Full public URL of the site, including any base path (e.g. `https://myymyuu.github.io/Portfolio`). Used for canonical/Open Graph URLs, robots, and sitemap. Defaults to `http://localhost:4317` plus `NEXT_PUBLIC_BASE_PATH` when unset. |
+| `NEXT_PUBLIC_BASE_PATH` | URL prefix when the site is not served from the domain root (e.g. `/Portfolio`). Empty by default so `npm run dev` works at `/`. GitHub Actions sets this from `actions/configure-pages`. |
+
+## Deploy to GitHub Pages
+
+The site is a static export (`output: "export"`). Pushing to `main` on [Myymyuu/Portfolio](https://github.com/Myymyuu/Portfolio) runs `.github/workflows/deploy-pages.yml`, which builds with base path `/Portfolio` and deploys to **https://myymyuu.github.io/Portfolio**.
+
+One-time setup in WSL (after creating the empty `Portfolio` repo on GitHub):
+
+```bash
+git remote add github https://github.com/Myymyuu/Portfolio.git
+git push -u github main
+```
+
+In the GitHub repo: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
+To preview a project-site build locally:
+
+```bash
+NEXT_PUBLIC_BASE_PATH=/Portfolio NEXT_PUBLIC_SITE_URL=http://localhost:4318/Portfolio npm run build
+mkdir -p /tmp/site && rm -rf /tmp/site/Portfolio && cp -r out /tmp/site/Portfolio
+python3 -m http.server 4318 --directory /tmp/site   # http://localhost:4318/Portfolio/
+```
 
 ## Structure
 
@@ -52,6 +73,7 @@ src/
     sections/          One component per page section
     ui/                Section, Container, ProjectCard, Timeline, Tag, ButtonLink, TextLink
   data/                Typed portfolio content
+  lib/                 Shared helpers (base path for GitHub Pages)
   types/               Shared TypeScript interfaces
 ```
 
